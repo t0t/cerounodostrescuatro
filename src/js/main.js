@@ -3,12 +3,12 @@ import frontMatter from 'front-matter';
 
 // Mapeo simple de rutas a archivos de contenido
 const contentMap = {
-    '/': './src/content/home.md',
-    '/lab': './src/content/lab.md',
-    '/fisionomia': './src/content/fisionomia.md',
-    '/usos': './src/content/usos.md',
-    '/about': './src/content/about.md',
-    '/fuentes': './src/content/fuentes.md'
+    '/cerounodostrescuatro/': './src/content/home.md',
+    '/cerounodostrescuatro/lab': './src/content/lab.md',
+    '/cerounodostrescuatro/fisionomia': './src/content/fisionomia.md',
+    '/cerounodostrescuatro/usos': './src/content/usos.md',
+    '/cerounodostrescuatro/about': './src/content/about.md',
+    '/cerounodostrescuatro/fuentes': './src/content/fuentes.md'
 };
 
 // Función para crear el hero usando los metadatos del frontmatter
@@ -31,7 +31,7 @@ function getCurrentPath() {
 // Función para cargar y renderizar el contenido
 async function loadContent() {
     const path = getCurrentPath();
-    const contentPath = contentMap[path] || contentMap['/'];
+    const contentPath = contentMap[path] || contentMap['/cerounodostrescuatro/'];
     const mainElement = document.querySelector('main.docs-content');
     
     try {
