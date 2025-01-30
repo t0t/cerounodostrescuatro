@@ -63,42 +63,52 @@ async function loadContent() {
     }
 }
 
-// Manejar clics en los enlaces
-document.addEventListener('click', (e) => {
-    const link = e.target.closest('[data-link]');
-    if (link) {
-        e.preventDefault();
-        const href = link.getAttribute('href');
-        window.history.pushState({}, '', href);
-        loadContent();
-    }
-});
-
-// Manejar navegación del navegador
-window.addEventListener('popstate', loadContent);
-
-// Inicializar
+// Inicializar la aplicación
 document.addEventListener('DOMContentLoaded', () => {
+    // Cargar contenido inicial
     loadContent();
 
-    // Setup menu toggle
+    // Configurar el menú
     const menuToggle = document.querySelector('.menu-toggle');
     const sidebar = document.querySelector('.docs-sidebar');
     const overlay = document.querySelector('.sidebar-overlay');
 
-    function toggleMenu() {
-        sidebar.classList.toggle('active');
-        overlay.classList.toggle('active');
-    }
+    if (menuToggle && sidebar && overlay) {
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        });
 
-    menuToggle.addEventListener('click', toggleMenu);
-    overlay.addEventListener('click', toggleMenu);
-
-    // Cerrar menú en pantallas grandes
-    window.addEventListener('resize', () => {
-        if (window.innerWidth > 768 && sidebar.classList.contains('active')) {
+        overlay.addEventListener('click', () => {
             sidebar.classList.remove('active');
             overlay.classList.remove('active');
+        });
+
+        // Cerrar menú en pantallas grandes
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+            }
+        });
+    }
+
+    // Manejar navegación
+    document.addEventListener('click', (e) => {
+        const link = e.target.closest('[data-link]');
+        if (link) {
+            e.preventDefault();
+            history.pushState(null, '', link.href);
+            loadContent();
+            
+            // Cerrar el menú si está abierto
+            if (sidebar && overlay && window.innerWidth <= 768) {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+            }
         }
     });
 });
+
+// Manejar navegación con los botones del navegador
+window.addEventListener('popstate', loadContent);
