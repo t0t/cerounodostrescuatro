@@ -23,6 +23,11 @@ async function loadContent() {
     const contentPath = contentMap[path] || contentMap['/'];
     const mainElement = document.querySelector('main.docs-content');
     
+    if (!mainElement) {
+        console.error('Main element not found');
+        return;
+    }
+    
     try {
         // Cargar el contenido Markdown
         const response = await fetch(contentPath);
@@ -32,21 +37,26 @@ async function loadContent() {
         // Procesar el frontmatter y el contenido Markdown
         const { attributes: metadata, body } = frontMatter(rawContent);
         
-        // Crear el HTML
-        const htmlContent = `
-            <div class="hero">
-                <div class="hero-content">
-                    <h1>${metadata.title}</h1>
-                    <p>${metadata.description}</p>
-                </div>
-            </div>
-            <div class="main-content">
-                ${marked(body)}
-            </div>
-        `;
+        // Actualizar el hero
+        const heroContent = document.querySelector('.hero-content');
+        if (heroContent) {
+            heroContent.innerHTML = `
+                <h1>${metadata.title}</h1>
+                <p>${metadata.description}</p>
+            `;
+        }
         
-        // Actualizar solo el contenido de main
-        mainElement.innerHTML = htmlContent;
+        // Actualizar el contenido principal
+        const mainContent = mainElement.querySelector('.main-content');
+        if (mainContent) {
+            mainContent.innerHTML = marked(body);
+        } else {
+            mainElement.innerHTML = `
+                <div class="main-content">
+                    ${marked(body)}
+                </div>
+            `;
+        }
     } catch (error) {
         console.error('Error loading content:', error);
         mainElement.innerHTML = '<p>Error loading content</p>';

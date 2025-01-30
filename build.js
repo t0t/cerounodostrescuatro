@@ -12,60 +12,23 @@ marked.setOptions({
     xhtml: true
 });
 
+// Leer el template HTML
+const templateContent = fs.readFileSync('template.html', 'utf8');
+
 // Template HTML base
 function template(content, title, description) {
-    return `<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${title}</title>
-    <meta name="description" content="${description}">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles.css">
-</head>
-<body>
-    <div class="layout-container">
-        <button class="menu-toggle" aria-label="Toggle menu">☰</button>
-        <div class="sidebar-overlay"></div>
-        
-        <aside class="docs-sidebar">
-            <nav class="nav-tree">
-                <ul>
-                    <li><a href="/" data-link>Inicio</a></li>
-                    <li><a href="/about" data-link>Sobre el Modelo</a></li>
-                    <li><a href="/faqs" data-link>Preguntas Frecuentes</a></li>
-                    <li><a href="/fisionomia" data-link>Fisionomía</a></li>
-                    <li><a href="/fuentes" data-link>Fuentes</a></li>
-                    <li><a href="/lab" data-link>Laboratorio</a></li>
-                    <li><a href="/usos" data-link>Usos</a></li>
-                </ul>
-            </nav>
-        </aside>
-
-        <main class="docs-content">
-            <div class="hero">
-                <div class="hero-content">
-                    <h1>${title}</h1>
-                    <p>${description}</p>
-                </div>
-            </div>
-            <div class="main-content">
-                ${content}
-            </div>
-        </main>
-
-        <footer class="footer">
-            Sergio Forés
-        </footer>
-    </div>
-
-    <script type="module" src="/src/js/main.js"></script>
-</body>
-</html>`;
+    let html = templateContent;
+    
+    // Reemplazar el título
+    html = html.replace('<title>Modelo 0,1,2,3,4</title>', `<title>${title}</title>`);
+    
+    // Reemplazar el contenido del hero
+    html = html.replace('<!-- El contenido del hero se insertará aquí -->', `<h1>${title}</h1><p>${description}</p>`);
+    
+    // Reemplazar el contenido principal
+    html = html.replace('<!-- El contenido se cargará aquí -->', content);
+    
+    return html;
 }
 
 // Crear directorio dist si no existe

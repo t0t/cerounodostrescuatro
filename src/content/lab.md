@@ -3,8 +3,6 @@ title: Laboratorio
 description: Explora y experimenta con las aplicaciones prácticas del modelo
 ---
 
-# Laboratorio: Exploraciones del Modelo 0,1,2,3,4
-
 ## Pintura al Óleo: El Color como Estructura
 En la pintura, el modelo 0,1,2,3,4 se traduce en una estructura cromática donde cada número representa una esencia visual:
 

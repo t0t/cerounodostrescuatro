@@ -137,7 +137,11 @@ function devHtmlPlugin() {
 
 export default defineConfig({
     base: '/',
+    css: {
+        devSourcemap: true, // Habilita source maps en desarrollo
+    },
     build: {
+        sourcemap: true, // Habilita source maps en producción
         outDir: 'dist',
         rollupOptions: {
             input: {
