@@ -128,13 +128,22 @@ function devHtmlPlugin() {
 }
 
 export default defineConfig({
-    base: '/cerounodostrescuatro/',
+    base: '/',
     build: {
         outDir: 'dist',
         rollupOptions: {
             input: {
                 main: resolve(__dirname, 'index.html'),
-            }
+            },
+            output: {
+                assetFileNames: (assetInfo) => {
+                    const cssPattern = /\.(css)$/;
+                    if (cssPattern.test(assetInfo.name)) {
+                        return 'styles.css';
+                    }
+                    return `assets/[name].[hash][extname]`;
+                },
+            },
         }
     },
     server: {

@@ -1,3 +1,4 @@
+import '../styles/styles.css'
 import { marked } from 'marked';
 import frontMatter from 'front-matter';
 
