@@ -1,0 +1,28 @@
+{
+  "name": "cerounodostrescuatro",
+  "version": "1.0.0",
+  "description": "Un modelo conceptual que describe la realidad en cinco estados fundamentales",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node build.js && vite",
+    "build": "node build.js && vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "filosofia",
+    "modelo",
+    "conceptual",
+    "spa"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "front-matter": "^4.0.2",
+    "marked": "^11.1.1"
+  },
+  "devDependencies": {
+    "vite": "^5.0.11",
+    "vite-plugin-markdown": "^2.2.0"
+  }
+}

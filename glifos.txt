@@ -1,0 +1,17 @@
++-------+---------------------------+
+| Glifo | Significado               |
++-------+---------------------------+
+|   ◌   | Potencialidad / Velo (0)  |
+|   •   | Unidad / Identidad (1)    |
+|   ∥   | Dualidad / Reflejo (2)    |
+|   △   | Conexión / Lenguaje (3)   |
+|   ⬛   | Manifestación / Acción (4)|
++-------+---------------------------+
+
+Ejemplos de combinaciones:
+
+• + ⬛  → Ser manifestado / Existencia
+◌ + ∥  → Dualidad ilusoria / Espejismo
+△ + ⬛  → Palabra que se hace realidad
+• + △ + ⬛ → Unidad que comunica y se manifiesta
+∥ + △  → Contraste que genera significado

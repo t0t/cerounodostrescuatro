@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traductor de Glifos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        textarea {
+            width: 80%;
+            height: 100px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #output {
+            margin-top: 20px;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 80%;
+            text-align: center;
+            font-size: 20px;
+        }
+        #documentation {
+            margin-top: 30px;
+            width: 80%;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            text-align: center;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Traductor de Texto a Glifos</h1>
+    <textarea id="inputText" placeholder="Escribe aquí..."></textarea>
+    <button onclick="traducirTexto()">Traducir</button>
+    <div id="output">🔠 Traducción aparecerá aquí 🔠</div>
+
+    <div id="documentation">
+        <h2>📜 ¿Cómo funciona?</h2>
+        <p>Introduce texto en español y presiona "Traducir". El sistema lo convertirá en glifos basados en cinco principios fundamentales.</p>
+    </div>
+
+    <script>
+        const glifos = {
+            "a": "◌", "b": "⬛", "c": "△", "d": "∥", "e": "•",
+            "f": "◌̶", "g": "⬛̶", "h": "△̶", "i": "∥̶", "j": "•̶",
+            "k": "◌̈", "l": "⬛̈", "m": "△̈", "n": "∥̈", "o": "•̈",
+            "p": "◌◌", "q": "⬛△", "r": "△∥", "s": "∥•", "t": "••",
+            "u": "◌•", "v": "⬛•", "w": "△•", "x": "∥•", "y": "•••",
+            "z": "◌⬛"
+        };
+        
+        function traducirTexto() {
+            let input = document.getElementById("inputText").value.toLowerCase();
+            let output = "";
+            for (let char of input) {
+                output += glifos[char] || char;
+            }
+            document.getElementById("output").textContent = output;
+        }
+    </script>
+</body>
+</html>

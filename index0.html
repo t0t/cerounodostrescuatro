@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traductor de Glifos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        textarea {
+            width: 80%;
+            height: 100px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #output {
+            margin-top: 20px;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 80%;
+            text-align: center;
+            font-size: 20px;
+        }
+        #documentation {
+            margin-top: 30px;
+            width: 80%;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            text-align: center;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Traductor de Texto a Glifos</h1>
+    <h1>Traductor de Texto a Glifos</h1>
+    <textarea id="inputText" placeholder="Escribe aquí..."></textarea>
+    <button onclick="traducirTexto()">Traducir</button>
+    <div id="output">🔠 Traducción aparecerá aquí 🔠</div>
+
+    <div id="documentation">
+        <h2>📜 Sobre este proyecto</h2>
+        <p>Este traductor convierte palabras y frases en un sistema de escritura basado en glifos. Está inspirado en una estructura ontológica de cinco principios universales: Potencialidad (0), Unidad (1), Dualidad (2), Conexión (3) y Manifestación (4).</p>
+        
+        <h2>🔍 ¿Cómo funciona?</h2>
+        <p>Simplemente introduce un texto en español en el cuadro de entrada y presiona el botón "Traducir". El sistema convertirá las palabras en sus equivalentes en glifos.</p>
+        
+        <h2>⚙️ Lógica del Lenguaje</h2>
+        <p>El sistema de escritura de glifos se basa en **cinco símbolos fundamentales**:</p>
+        <ul>
+            <li><strong>◌ (Potencialidad / Velo - 0)</strong>: Representa lo inmanifestado, la posibilidad.</li>
+            <li><strong>• (Unidad / Identidad - 1)</strong>: La existencia, el ser, lo indivisible.</li>
+            <li><strong>∥ (Dualidad / Reflejo - 2)</strong>: La separación, la contradicción, el espejo.</li>
+            <li><strong>△ (Conexión / Lenguaje - 3)</strong>: La comunicación, la traducción de ideas.</li>
+            <li><strong>⬛ (Manifestación / Acción - 4)</strong>: La materialización, la realidad tangible.</li>
+        </ul>
+        <p>Para representar **variaciones como tiempos verbales, pluralidad o matices de significado**, se agregan **modificadores simples**:</p>
+        <ul>
+            <li><strong>Punto sobre el símbolo (◌̈, •̈, etc.)</strong>: Indica **futuro**.</li>
+            <li><strong>Raya debajo (◌̶, •̶, etc.)</strong>: Indica **pasado**.</li>
+            <li><strong>Doble repetición (◌◌, ••, etc.)</strong>: Indica **énfasis o pluralidad**.</li>
+            <li><strong>Glifo pequeño a la derecha (◌•, •⬛, etc.)</strong>: Indica **posesión o relación**.</li>
+        </ul>
+        <p>Ejemplos de frases:</p>
+        <ul>
+            <li>🔹 **Yo fui** → • ∥⬛̶</li>
+            <li>🔹 **Nosotros seremos** → ⬛ ∥⬛̈</li>
+            <li>🔹 **Ellos hablaron** → ◌⬛ △̶</li>
+            <li>🔹 **La luz se encenderá** → • △⬛̈</li>
+        </ul>
+    </div>

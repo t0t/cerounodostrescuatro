@@ -1,0 +1,54 @@
+{
+   "fundamentos_basicos": {
+     "0": "Potencialidad / Velo",
+     "1": "Unidad / Identidad",
+     "2": "Dualidad / Reflejo",
+     "3": "Conexión / Lenguaje",
+     "4": "Manifestación / Acción"
+   },
+   "estructura_de_escritura": {
+     "alfabeto": {
+       "◌": "Potencialidad (0)",
+       "•": "Unidad (1)",
+       "∥": "Dualidad (2)",
+       "△": "Conexión (3)",
+       "⬛": "Manifestación (4)"
+     },
+     "modificadores": {
+       "◌̈": "Futuro",
+       "◌̶": "Pasado",
+       "◌": "Presente",
+       "•̈": "Intensidad",
+       "•̶": "Reducción"
+     },
+     "estructura_frases": {
+       "afirmacion": "(Sujeto) + (Acción) + (Objeto / Lugar)",
+       "negacion": "(Potencialidad) + (Sujeto) + (Acción negada)",
+       "interrogacion": "(Potencialidad) + (Sujeto) + (Acción en duda)",
+       "orden": "(Acción) + (Sujeto en énfasis)"
+     }
+   },
+   "niveles_de_complejidad": {
+     "nivel_1": {
+       "glifo_simple": "Unidad de significado básico",
+       "ejemplo": "• → Existencia"
+     },
+     "nivel_2": {
+       "combinacion_doble": "Dos glifos combinados para un significado más profundo",
+       "ejemplo": "• + ⬛ → Ser manifestado / Existencia"
+     },
+     "nivel_3": {
+       "frase_basica": "Tres glifos estructurados en una oración",
+       "ejemplo": "• + △ + ⬛ → Unidad que comunica y se manifiesta"
+     },
+     "nivel_4": {
+       "frase_compleja": "Estructura avanzada con modificadores y múltiples conexiones",
+       "ejemplo": "◌ + △ + ⬛ → El potencial toma forma a través del lenguaje"
+     },
+     "nivel_5": {
+       "narrativa": "Texto extenso utilizando todo el sistema",
+       "ejemplo": "◌ + • + ⬛ → Del vacío surge la existencia, ∥ + △ + ⬛ → Los opuestos dialogan en el lenguaje"
+     }
+   }
+ }
+ 

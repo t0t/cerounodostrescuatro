@@ -1,0 +1,29 @@
+<svg width="500" height="300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="500" height="300" fill="#f8f8f8" stroke="#000" stroke-width="2"/>
+  
+  <!-- Encabezado -->
+  <text x="20" y="30" font-size="18" font-family="monospace" font-weight="bold">Glifo</text>
+  <text x="100" y="30" font-size="18" font-family="monospace" font-weight="bold">Significado</text>
+  
+  <!-- Glifos y sus significados -->
+  <text x="20" y="60" font-size="24" font-family="monospace">◌</text>
+  <text x="100" y="60" font-size="16" font-family="monospace">Potencialidad / Velo (0)</text>
+  
+  <text x="20" y="90" font-size="24" font-family="monospace">•</text>
+  <text x="100" y="90" font-size="16" font-family="monospace">Unidad / Identidad (1)</text>
+  
+  <text x="20" y="120" font-size="24" font-family="monospace">∥</text>
+  <text x="100" y="120" font-size="16" font-family="monospace">Dualidad / Reflejo (2)</text>
+  
+  <text x="20" y="150" font-size="24" font-family="monospace">△</text>
+  <text x="100" y="150" font-size="16" font-family="monospace">Conexión / Lenguaje (3)</text>
+  
+  <text x="20" y="180" font-size="24" font-family="monospace">⬛</text>
+  <text x="100" y="180" font-size="16" font-family="monospace">Manifestación / Acción (4)</text>
+  
+  <!-- Ejemplos de combinaciones -->
+  <text x="20" y="220" font-size="16" font-family="monospace">• + ⬛ → Ser manifestado / Existencia</text>
+  <text x="20" y="240" font-size="16" font-family="monospace">◌ + ∥ → Dualidad ilusoria / Espejismo</text>
+  <text x="20" y="260" font-size="16" font-family="monospace">△ + ⬛ → Palabra que se hace realidad</text>
+  <text x="20" y="280" font-size="16" font-family="monospace">• + △ + ⬛ → Unidad que comunica y se manifiesta</text>
+</svg>
