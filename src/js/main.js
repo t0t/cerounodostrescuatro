@@ -4,25 +4,13 @@ import frontMatter from 'front-matter';
 
 // Mapeo simple de rutas a archivos de contenido
 const contentMap = {
-    '/cerounodostrescuatro/': './src/content/home.md',
-    '/cerounodostrescuatro/lab': './src/content/lab.md',
-    '/cerounodostrescuatro/fisionomia': './src/content/fisionomia.md',
-    '/cerounodostrescuatro/usos': './src/content/usos.md',
-    '/cerounodostrescuatro/about': './src/content/about.md',
-    '/cerounodostrescuatro/fuentes': './src/content/fuentes.md'
+    '/': './src/content/home.md',
+    '/lab': './src/content/lab.md',
+    '/fisionomia': './src/content/fisionomia.md',
+    '/usos': './src/content/usos.md',
+    '/about': './src/content/about.md',
+    '/fuentes': './src/content/fuentes.md'
 };
-
-// Función para crear el hero usando los metadatos del frontmatter
-function createHero(metadata) {
-    return `
-        <div class="hero">
-            <div class="hero-content">
-                <h1>${metadata.title}</h1>
-                <p>${metadata.description}</p>
-            </div>
-        </div>
-    `;
-}
 
 // Función para obtener la ruta actual
 function getCurrentPath() {
@@ -32,12 +20,10 @@ function getCurrentPath() {
 // Función para cargar y renderizar el contenido
 async function loadContent() {
     const path = getCurrentPath();
-    const contentPath = contentMap[path] || contentMap['/cerounodostrescuatro/'];
+    const contentPath = contentMap[path] || contentMap['/'];
     const mainElement = document.querySelector('main.docs-content');
     
     try {
-        mainElement.innerHTML = '';
-        
         // Cargar el contenido Markdown
         const response = await fetch(contentPath);
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
@@ -46,17 +32,21 @@ async function loadContent() {
         // Procesar el frontmatter y el contenido Markdown
         const { attributes: metadata, body } = frontMatter(rawContent);
         
-        // Crear y añadir el hero usando los metadatos
-        const heroHTML = createHero(metadata);
-        mainElement.insertAdjacentHTML('afterbegin', heroHTML);
+        // Crear el HTML
+        const htmlContent = `
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>${metadata.title}</h1>
+                    <p>${metadata.description}</p>
+                </div>
+            </div>
+            <div class="main-content">
+                ${marked(body)}
+            </div>
+        `;
         
-        // Convertir y añadir el contenido Markdown
-        const contentHTML = marked(body);
-        const contentDiv = document.createElement('div');
-        contentDiv.className = 'content';
-        contentDiv.innerHTML = contentHTML;
-        mainElement.appendChild(contentDiv);
-        
+        // Actualizar solo el contenido de main
+        mainElement.innerHTML = htmlContent;
     } catch (error) {
         console.error('Error loading content:', error);
         mainElement.innerHTML = '<p>Error loading content</p>';

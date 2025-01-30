@@ -50,6 +50,7 @@ function devHtmlPlugin() {
                             <link rel="preconnect" href="https://fonts.googleapis.com">
                             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
                             <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+                            <script type="module" src="/src/js/main.js"></script>
                             <link rel="stylesheet" href="/src/styles/styles.css">
                         </head>
                         <body>
@@ -60,12 +61,12 @@ function devHtmlPlugin() {
                                 <aside class="docs-sidebar">
                                     <nav class="nav-tree">
                                         <ul>
-                                            <li><a href="/" class="file">Inicio</a></li>
-                                            <li><a href="/lab" class="file">Laboratorio</a></li>
-                                            <li><a href="/fisionomia" class="file">Fisionomía</a></li>
-                                            <li><a href="/usos" class="file">Casos de Uso</a></li>
-                                            <li><a href="/about" class="file">About</a></li>
-                                            <li><a href="/fuentes" class="file">Fuentes</a></li>
+                                            <li><a href="/" data-link>Inicio</a></li>
+                                            <li><a href="/lab" data-link>Laboratorio</a></li>
+                                            <li><a href="/fisionomia" data-link>Fisionomía</a></li>
+                                            <li><a href="/usos" data-link>Casos de Uso</a></li>
+                                            <li><a href="/about" data-link>About</a></li>
+                                            <li><a href="/fuentes" data-link>Fuentes</a></li>
                                         </ul>
                                     </nav>
                                 </aside>
@@ -83,6 +84,13 @@ function devHtmlPlugin() {
                                         </div>
                                     </div>
                                 </main>
+
+                                <footer>
+                                    <div> 2024 Sergio Forés</div>
+                                    <div>
+                                        <a href="https://github.com/t0t/cerounodostrescuatro" target="_blank">GitHub</a>
+                                    </div>
+                                </footer>
                             </div>
 
                             <script>
@@ -133,17 +141,8 @@ export default defineConfig({
         outDir: 'dist',
         rollupOptions: {
             input: {
-                main: resolve(__dirname, 'index.html'),
-            },
-            output: {
-                assetFileNames: (assetInfo) => {
-                    const cssPattern = /\.(css)$/;
-                    if (cssPattern.test(assetInfo.name)) {
-                        return 'styles.css';
-                    }
-                    return `assets/[name].[hash][extname]`;
-                },
-            },
+                main: resolve(__dirname, 'template.html')
+            }
         }
     },
     server: {
