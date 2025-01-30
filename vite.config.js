@@ -5,6 +5,7 @@ import { marked } from 'marked';
 import frontMatter from 'front-matter';
 import { exec } from 'child_process';
 import { promisify } from 'util';
+import { resolve } from 'path';
 
 const execAsync = promisify(exec);
 
@@ -127,6 +128,15 @@ function devHtmlPlugin() {
 }
 
 export default defineConfig({
+    base: '/cerounodostrescuatro/',
+    build: {
+        outDir: 'dist',
+        rollupOptions: {
+            input: {
+                main: resolve(__dirname, 'index.html'),
+            }
+        }
+    },
     server: {
         watch: {
             include: ['src/**/*.{js,md,css,html}']
