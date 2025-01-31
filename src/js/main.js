@@ -26,6 +26,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Manejar navegación
+    function updateActiveMenuItem(path) {
+        // Remover la clase active de todos los enlaces
+        document.querySelectorAll('.nav-tree a').forEach(link => {
+            link.classList.remove('active');
+        });
+
+        // Encontrar y activar el enlace correspondiente a la ruta actual
+        const currentLink = document.querySelector(`.nav-tree a[href="${path}"]`);
+        if (currentLink) {
+            currentLink.classList.add('active');
+        } else if (path === '/cerounodostrescuatro/' || path === '/cerounodostrescuatro') {
+            // Activar el enlace de inicio
+            document.querySelector('.nav-tree a[href="./"]')?.classList.add('active');
+        }
+    }
+
     async function updateContent(path) {
         try {
             const response = await fetch(path);
@@ -36,12 +52,19 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('.docs-content').innerHTML = 
                 newDoc.querySelector('.docs-content').innerHTML;
             document.title = newDoc.title;
+            
+            // Actualizar el elemento activo del menú
+            updateActiveMenuItem(path);
+            
             window.scrollTo(0, 0);
         } catch (error) {
             console.error('Error loading page:', error);
             document.querySelector('.docs-content').innerHTML = `<h1>Error</h1><p>${error.message}</p>`;
         }
     }
+
+    // Establecer el elemento activo inicial
+    updateActiveMenuItem(window.location.pathname);
 
     document.addEventListener('click', async (e) => {
         const link = e.target.closest('[data-link]');
