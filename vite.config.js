@@ -162,6 +162,11 @@ export default defineConfig({
             include: ['src/**/*.{js,md,css,html}']
         },
         port: 3000,
+        historyApiFallback: {
+            rewrites: [
+                { from: /^\/cerounodostrescuatro/, to: '/template.html' }
+            ]
+        },
         open: true
     },
     plugins: [

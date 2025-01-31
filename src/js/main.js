@@ -28,45 +28,34 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Manejar navegación
+    async function updateContent(path) {
+        try {
+            const response = await fetch(path);
+            const html = await response.text();
+            const parser = new DOMParser();
+            const newDoc = parser.parseFromString(html, 'text/html');
+            
+            document.querySelector('.docs-content').innerHTML = 
+                newDoc.querySelector('.docs-content').innerHTML;
+            document.title = newDoc.title;
+            window.scrollTo(0, 0);
+        } catch (error) {
+            console.error('Error loading page:', error);
+            document.querySelector('.docs-content').innerHTML = `<h1>Error</h1><p>${error.message}</p>`;
+        }
+    }
+
     document.addEventListener('click', async (e) => {
         const link = e.target.closest('[data-link]');
         if (link) {
             e.preventDefault();
             const path = link.getAttribute('href');
-            const baseUrl = import.meta.env.BASE_URL || '/';
-            
-            // Construir la ruta completa
-            const fullPath = path === './' ? baseUrl : `${baseUrl}${path.replace('./', '')}`;
-            history.pushState(null, '', fullPath);
-            
-            // Cerrar el menú si está abierto
-            if (sidebar && overlay && window.innerWidth <= 768) {
-                sidebar.classList.remove('active');
-                overlay.classList.remove('active');
-            }
-
-            // Cargar el contenido de la página
-            try {
-                const response = await fetch(`${fullPath}/index.html`);
-                if (!response.ok) throw new Error('Page not found');
-                const html = await response.text();
-                
-                // Actualizar el contenido
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-                const content = doc.querySelector('.docs-content');
-                if (content) {
-                    document.querySelector('.docs-content').innerHTML = content.innerHTML;
-                }
-                
-                // Actualizar el título si existe
-                const title = doc.querySelector('title');
-                if (title) {
-                    document.title = title.textContent;
-                }
-            } catch (error) {
-                console.error('Error loading page:', error);
-            }
+            history.pushState(null, '', path);
+            await updateContent(path);
         }
+    });
+
+    window.addEventListener('popstate', async () => {
+        await updateContent(window.location.pathname);
     });
 });
