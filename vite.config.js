@@ -146,22 +146,15 @@ export default defineConfig({
         rollupOptions: {
             input: {
                 main: resolve(__dirname, 'template.html')
-            },
-            output: {
-                entryFileNames: 'assets/[name]-[hash].js',
-                chunkFileNames: 'assets/[name]-[hash].js',
-                assetFileNames: (assetInfo) => {
-                    if (assetInfo.name.endsWith('.css')) {
-                        return 'assets/[name][extname]';
-                    }
-                    return 'assets/[name]-[hash][extname]';
-                }
             }
         }
     },
     server: {
         watch: {
-            include: ['src/**/*.{js,md,css,html}']
+            usePolling: true
+        },
+        fs: {
+            strict: false
         },
         port: 3000,
         historyApiFallback: {

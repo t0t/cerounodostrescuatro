@@ -177,4 +177,30 @@ document.addEventListener('DOMContentLoaded', () => {
             resultsContainer.hidden = true;
         }
     });
+
+    // Función para manejar el tema
+    function initTheme() {
+        const themeToggle = document.querySelector('.theme-toggle');
+        
+        // Establecer tema inicial
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        } else {
+            // Por defecto usar tema oscuro
+            document.documentElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+        }
+        
+        // Manejar cambio de tema
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    }
+
+    initTheme();
 });
