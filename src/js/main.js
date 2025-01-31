@@ -1,73 +1,7 @@
 import '../styles/styles.css'
-import { marked } from '/node_modules/marked/lib/marked.esm.js';
-import frontMatter from '/node_modules/front-matter/index.js';
-
-// Mapeo simple de rutas a archivos de contenido
-const contentMap = {
-    '/cerounodostrescuatro/': './src/content/home.md',
-    '/cerounodostrescuatro/lab': './src/content/lab.md',
-    '/cerounodostrescuatro/fisionomia': './src/content/fisionomia.md',
-    '/cerounodostrescuatro/usos': './src/content/usos.md',
-    '/cerounodostrescuatro/about': './src/content/about.md',
-    '/cerounodostrescuatro/fuentes': './src/content/fuentes.md'
-};
-
-// Función para obtener la ruta actual
-function getCurrentPath() {
-    return window.location.pathname;
-}
-
-// Función para cargar y renderizar el contenido
-async function loadContent() {
-    const path = getCurrentPath();
-    const contentPath = contentMap[path] || contentMap['/cerounodostrescuatro/'];
-    const mainElement = document.querySelector('main.docs-content');
-    
-    if (!mainElement) {
-        console.error('Main element not found');
-        return;
-    }
-    
-    try {
-        // Cargar el contenido Markdown
-        const response = await fetch(contentPath);
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        const rawContent = await response.text();
-        
-        // Procesar el frontmatter y el contenido Markdown
-        const { attributes: metadata, body } = frontMatter(rawContent);
-        
-        // Actualizar el hero
-        const heroContent = document.querySelector('.hero-content');
-        if (heroContent) {
-            heroContent.innerHTML = `
-                <h1>${metadata.title}</h1>
-                <p>${metadata.description}</p>
-            `;
-        }
-        
-        // Actualizar el contenido principal
-        const mainContent = mainElement.querySelector('.main-content');
-        if (mainContent) {
-            mainContent.innerHTML = marked(body);
-        } else {
-            mainElement.innerHTML = `
-                <div class="main-content">
-                    ${marked(body)}
-                </div>
-            `;
-        }
-    } catch (error) {
-        console.error('Error loading content:', error);
-        mainElement.innerHTML = '<p>Error loading content</p>';
-    }
-}
 
 // Inicializar la aplicación
 document.addEventListener('DOMContentLoaded', () => {
-    // Cargar contenido inicial
-    loadContent();
-
     // Configurar el menú
     const menuToggle = document.querySelector('.menu-toggle');
     const sidebar = document.querySelector('.docs-sidebar');
@@ -99,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (link) {
             e.preventDefault();
             history.pushState(null, '', link.href);
-            loadContent();
             
             // Cerrar el menú si está abierto
             if (sidebar && overlay && window.innerWidth <= 768) {
@@ -109,6 +42,3 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
-
-// Manejar navegación con los botones del navegador
-window.addEventListener('popstate', loadContent);
