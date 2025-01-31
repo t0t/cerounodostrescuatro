@@ -1,5 +1,3 @@
-import '../styles/styles.css'
-
 // Inicializar la aplicación
 document.addEventListener('DOMContentLoaded', () => {
     // Configurar el menú
