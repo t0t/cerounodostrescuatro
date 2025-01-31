@@ -28,16 +28,44 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Manejar navegación
-    document.addEventListener('click', (e) => {
+    document.addEventListener('click', async (e) => {
         const link = e.target.closest('[data-link]');
         if (link) {
             e.preventDefault();
-            history.pushState(null, '', link.href);
+            const path = link.getAttribute('href');
+            const baseUrl = import.meta.env.BASE_URL || '/';
+            
+            // Construir la ruta completa
+            const fullPath = path === './' ? baseUrl : `${baseUrl}${path.replace('./', '')}`;
+            history.pushState(null, '', fullPath);
             
             // Cerrar el menú si está abierto
             if (sidebar && overlay && window.innerWidth <= 768) {
                 sidebar.classList.remove('active');
                 overlay.classList.remove('active');
+            }
+
+            // Cargar el contenido de la página
+            try {
+                const response = await fetch(`${fullPath}/index.html`);
+                if (!response.ok) throw new Error('Page not found');
+                const html = await response.text();
+                
+                // Actualizar el contenido
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const content = doc.querySelector('.docs-content');
+                if (content) {
+                    document.querySelector('.docs-content').innerHTML = content.innerHTML;
+                }
+                
+                // Actualizar el título si existe
+                const title = doc.querySelector('title');
+                if (title) {
+                    document.title = title.textContent;
+                }
+            } catch (error) {
+                console.error('Error loading page:', error);
             }
         }
     });
