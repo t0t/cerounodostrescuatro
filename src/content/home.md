@@ -3,7 +3,7 @@ title: Modelo 0,1,2,3,4
 description: Una estructura conceptual que describe la realidad a través de cinco estados fundamentales
 ---
 
-- No se ve porque es el mismo acto de ver.
+- No se ve porque es el mismo acto de ver...
 
 <section class="grid mb-5">
 <article>

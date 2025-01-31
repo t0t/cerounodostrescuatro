@@ -5,6 +5,14 @@ Todos los cambios notables en este proyecto se documentarán en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/),
 y este proyecto sigue [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.1] - 2025-01-31
+
+### Corregido
+- Error de MIME type en producción para archivos CSS
+- Manejo de rutas relativas en GitHub Pages
+- Navegación SPA en modo producción
+- Configuración de Vite para builds de producción
+
 ## [1.0.0] - 2025-01-30
 
 ### Añadido
