@@ -141,13 +141,15 @@ export default defineConfig({
         devSourcemap: true
     },
     build: {
-        outDir: 'dist',
+        outDir: '.',
         assetsDir: 'assets',
         rollupOptions: {
             input: {
                 main: resolve(__dirname, 'template.html')
             },
             output: {
+                entryFileNames: 'assets/[name]-[hash].js',
+                chunkFileNames: 'assets/[name]-[hash].js',
                 assetFileNames: (assetInfo) => {
                     if (assetInfo.name.endsWith('.css')) {
                         return 'assets/[name][extname]';
