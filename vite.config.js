@@ -136,7 +136,7 @@ function devHtmlPlugin() {
 }
 
 export default defineConfig({
-    base: '/',
+    base: '/cerounodostrescuatro/',
     css: {
         devSourcemap: true, // Habilita source maps en desarrollo
     },
