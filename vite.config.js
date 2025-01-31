@@ -138,14 +138,14 @@ function devHtmlPlugin() {
 export default defineConfig({
     base: '/cerounodostrescuatro/',
     css: {
-        devSourcemap: true, // Habilita source maps en desarrollo
+        devSourcemap: true
     },
     build: {
-        sourcemap: true, // Habilita source maps en producción
-        outDir: 'dist',
+        outDir: '.',
+        emptyOutDir: false,
         rollupOptions: {
             input: {
-                main: resolve(__dirname, 'template.html')
+                main: resolve(__dirname, 'index.html')
             }
         }
     },

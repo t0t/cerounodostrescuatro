@@ -31,11 +31,6 @@ function template(content, title, description) {
     return html;
 }
 
-// Crear directorio dist si no existe
-if (!fs.existsSync('dist')) {
-    fs.mkdirSync('dist');
-}
-
 // Procesar archivos markdown
 const contentDir = 'src/content';
 const files = fs.readdirSync(contentDir);
@@ -46,20 +41,18 @@ files.forEach(file => {
         const { attributes, body } = frontMatter(content);
         const htmlContent = marked.parse(body);
         
-        // Crear archivo HTML
+        // Crear archivo HTML en la raíz
         const htmlFileName = file.replace('.md', '.html');
-        const htmlPath = path.join('dist', htmlFileName);
-        
-        fs.writeFileSync(htmlPath, template(htmlContent, attributes.title, attributes.description));
+        fs.writeFileSync(htmlFileName, template(htmlContent, attributes.title, attributes.description));
     }
 });
 
 // Copiar archivos estáticos
-fs.copyFileSync('src/styles/styles.css', 'dist/styles.css');
-fs.copyFileSync('favicon.ico', 'dist/favicon.ico');
+fs.copyFileSync('src/styles/styles.css', 'styles.css');
+fs.copyFileSync('favicon.ico', 'favicon.ico');
 
 // Crear index.html
 const homeContent = fs.readFileSync(path.join(contentDir, 'home.md'), 'utf8');
 const { attributes: homeAttributes, body: homeBody } = frontMatter(homeContent);
 const homeHtml = marked.parse(homeBody);
-fs.writeFileSync('dist/index.html', template(homeHtml, homeAttributes.title, homeAttributes.description));
+fs.writeFileSync('index.html', template(homeHtml, homeAttributes.title, homeAttributes.description));
