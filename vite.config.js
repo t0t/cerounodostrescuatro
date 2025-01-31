@@ -141,11 +141,19 @@ export default defineConfig({
         devSourcemap: true
     },
     build: {
-        outDir: '.temp_build',
-        emptyOutDir: true,
+        outDir: 'dist',
+        assetsDir: 'assets',
         rollupOptions: {
             input: {
-                main: resolve(__dirname, 'index.html')
+                main: resolve(__dirname, 'template.html')
+            },
+            output: {
+                assetFileNames: (assetInfo) => {
+                    if (assetInfo.name.endsWith('.css')) {
+                        return 'assets/[name][extname]';
+                    }
+                    return 'assets/[name]-[hash][extname]';
+                }
             }
         }
     },
