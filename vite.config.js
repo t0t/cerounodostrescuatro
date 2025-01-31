@@ -141,8 +141,8 @@ export default defineConfig({
         devSourcemap: true
     },
     build: {
-        outDir: '.',
-        emptyOutDir: false,
+        outDir: '.temp_build',
+        emptyOutDir: true,
         rollupOptions: {
             input: {
                 main: resolve(__dirname, 'index.html')

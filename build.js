@@ -47,9 +47,15 @@ files.forEach(file => {
     }
 });
 
-// Copiar archivos estáticos
-fs.copyFileSync('src/styles/styles.css', 'styles.css');
-fs.copyFileSync('favicon.ico', 'favicon.ico');
+// Copiar archivos estáticos desde .temp_build
+if (fs.existsSync('.temp_build')) {
+    const tempFiles = fs.readdirSync('.temp_build');
+    tempFiles.forEach(file => {
+        if (file.endsWith('.js') || file.endsWith('.css') || file.endsWith('.ico')) {
+            fs.copyFileSync(path.join('.temp_build', file), file);
+        }
+    });
+}
 
 // Crear index.html
 const homeContent = fs.readFileSync(path.join(contentDir, 'home.md'), 'utf8');
