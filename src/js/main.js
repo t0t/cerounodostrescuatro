@@ -1,6 +1,6 @@
 import '../styles/styles.css'
-import { marked } from 'marked';
-import frontMatter from 'front-matter';
+import { marked } from '/node_modules/marked/lib/marked.esm.js';
+import frontMatter from '/node_modules/front-matter/index.js';
 
 // Mapeo simple de rutas a archivos de contenido
 const contentMap = {
